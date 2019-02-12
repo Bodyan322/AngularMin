@@ -13,8 +13,11 @@
         }
       });
     },
-    bootstrap(node) {
-      return null;
+    bootstrap(node = '[ng-app]') {
+      const Nodes = document.querySelector(node);
+      const childNodes = Nodes.querySelectorAll('*');
+
+      childNodes.forEach(elem => this.compile(elem));
     }
   };
 
