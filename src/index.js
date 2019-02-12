@@ -25,8 +25,8 @@
   }];
 
   const smallAngular = {
-    directive() {
-      return null;
+    directive(name, callback) {
+      directives.push({ name, functions: callback });
     },
     compile(node) {
       return null;
