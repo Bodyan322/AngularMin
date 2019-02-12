@@ -2,10 +2,16 @@
   const directives = [];
   const smallAngular = {
     directive(name, callback) {
-      directives.push({ name, functions: callback });
+      directives.push({ name, func: callback });
     },
     compile(node) {
-      return null;
+      directives.forEach(elem => {
+        for (let i = 0; i < node.attributes.length; i++) {
+          if (node.attributes[i].name === elem.name) {
+            elem.func(node, node.attributes[i].value);
+          }
+        }
+      });
     },
     bootstrap(node) {
       return null;
