@@ -35,6 +35,24 @@
       return null;
     }
   };
+
+  smallAngular.directive('ng-app', function(el) {
+    console.log('called directive ng-show on element', el);
+  });
+  smallAngular.directive('ng-show', function(el) {
+    console.log('called directive ng-show on element', el);
+  });
+  smallAngular.directive('ng-model', function(el) {
+    console.log('called directive ng-show on element', el);
+  });
+  smallAngular.directive('ng-make-short', function(el) {
+    console.log('called directive ng-show on element', el);
+  });
+  smallAngular.directive('ng-bind', function(el) {
+    console.log('called directive ng-show on element', el);
+  });
+  smallAngular.directive('ng-init', function(el) {
+    console.log('called directive ng-show on element', el);
+  });
   window.smallAngular = smallAngular;
 })();
-
