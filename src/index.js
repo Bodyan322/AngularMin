@@ -13,31 +13,34 @@
         }
       });
     },
-    bootstrap(node = '[ng-app]') {
-      const Nodes = document.querySelector(node);
-      const childNodes = Nodes.querySelectorAll('*');
-
+    bootstrap(node) {
+      const nodes = node || document.querySelector('[ng-app]');
+      const childNodes = nodes.querySelectorAll('*');
+      this.compile(nodes);
       childNodes.forEach(elem => this.compile(elem));
     }
   };
-
   smallAngular.directive('ng-app', function(el) {
-    console.log('called directive ng-app on element', el);
+    return null;
   });
   smallAngular.directive('ng-show', function(el) {
-    console.log('called directive ng-show on element', el);
+    return null;
   });
   smallAngular.directive('ng-model', function(el) {
-    console.log('called directive ng-model on element', el);
+    return null;
   });
   smallAngular.directive('ng-make-short', function(el) {
-    console.log('called directive ng-make-short on element', el);
+    return null;
   });
   smallAngular.directive('ng-bind', function(el) {
-    console.log('called directive ng-bind on element', el);
+    return null;
   });
   smallAngular.directive('ng-init', function(el) {
-    console.log('called directive ng-init on element', el);
+    return null;
   });
+
   window.smallAngular = smallAngular;
 })();
+
+smallAngular.bootstrap();
+
