@@ -1,8 +1,8 @@
 (function() {
   const directives = [];
   const smallAngular = {
-    directive(name, callback) {
-      directives.push({ name, func: callback });
+    directive(name, func) {
+      directives.push({ name, func });
     },
     compile(node) {
       directives.forEach(elem => {
@@ -14,9 +14,9 @@
       });
     },
     bootstrap(node) {
-      const nodes = node || document.querySelector('[ng-app]');
-      const childNodes = nodes.querySelectorAll('*');
-      this.compile(nodes);
+      const baseNode = node || document.querySelector('[ng-app]');
+      const childNodes = baseNode.querySelectorAll('*');
+      this.compile(baseNode);
       childNodes.forEach(elem => this.compile(elem));
     }
   };
