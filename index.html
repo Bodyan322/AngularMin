@@ -11,10 +11,15 @@
 
 <body ng-app ng-init="name='ivan'">
   <div ng-show="true"> hi Ivan!!! </div>
+  <div ng-hide="true"> hi Ivan!!! </div>
   <input ng-model="name"/>
   <p ng-make-short>qqq qqq qqq qqq qqq qqq qqq</p>
   <p ng-bind="name"></p>
-  <script src="src/index.js"></script>
+  <ul>
+    <li ng-make-long="some"></li>
+  </ul>
+  <button ng-click=""></button>
 </body>
+<script src="src/index.js"></script>
 
 </html>
