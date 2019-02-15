@@ -49,14 +49,22 @@
       el.style.display = rootScope.eval(data) ? 'none' : 'block';
     });
   });
-  smallAngular.directive('ng-model', function(el) {
-    return null;
+  smallAngular.directive('ng-model', function(rootScope, el) {
+    el.addEventListener('input', function(e) {
+      const data = el.getAttribute('ng-model');
+      rootScope[data] = el.value;
+      rootScope.$apply();
+    });
   });
   smallAngular.directive('ng-make-short', function(el) {
     return null;
   });
-  smallAngular.directive('ng-bind', function(el) {
-    return null;
+  smallAngular.directive('ng-bind', function(rootScope, el) {
+    const data = el.getAttribute('ng-bind');
+    el.innerHTML = rootScope[data];
+    rootScope.$watch(data, () => {
+      el.innerHTML = rootScope[data];
+    });
   });
   smallAngular.directive('ng-init', function(rootScope, el) {
     const data = el.getAttribute('ng-init');
