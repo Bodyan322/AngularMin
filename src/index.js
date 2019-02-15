@@ -77,6 +77,16 @@
       rootScope.$apply();
     });
   });
+  smallAngular.directive('ng-make-short', function(rootScope, el) {
+    const strLen = el.getAttribute('length') || 4;
+    console.log(strLen);
+
+    el.innerHTML = `${el.innerHTML.slice(0, strLen)}...`;
+    rootScope.$watch(() => ({}), () => {
+      el.innerText = `${el.innerText.slice(0, strLen)}...`;
+    });
+    rootScope.$apply();
+  });
 
   window.smallAngular = smallAngular;
 })();
