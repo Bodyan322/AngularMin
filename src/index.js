@@ -41,7 +41,14 @@
       el.style.display = rootScope.eval(data) ? 'block' : 'none';
     });
   });
+  smallAngular.directive('ng-hide', function(rootScope, el) {
+    const data = el.getAttribute('ng-hide');
 
+    el.style.display = rootScope.eval(data) ? 'none' : 'block';
+    rootScope.$watch(data, () => {
+      el.style.display = rootScope.eval(data) ? 'none' : 'block';
+    });
+  });
   smallAngular.directive('ng-model', function(el) {
     return null;
   });
