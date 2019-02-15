@@ -50,7 +50,7 @@
     });
   });
   smallAngular.directive('ng-model', function(rootScope, el) {
-    el.addEventListener('input', function(e) {
+    el.addEventListener('input', function() {
       const data = el.getAttribute('ng-model');
       rootScope[data] = el.value;
       rootScope.$apply();
@@ -69,6 +69,13 @@
   smallAngular.directive('ng-init', function(rootScope, el) {
     const data = el.getAttribute('ng-init');
     rootScope.eval(data);
+  });
+  smallAngular.directive('ng-click', function(rootScope, el) {
+    el.addEventListener('click', function() {
+      const data = el.getAttribute('ng-click');
+      rootScope.eval(data);
+      rootScope.$apply();
+    });
   });
 
   window.smallAngular = smallAngular;
