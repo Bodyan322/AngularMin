@@ -58,8 +58,9 @@
   smallAngular.directive('ng-bind', function(el) {
     return null;
   });
-  smallAngular.directive('ng-init', function(el) {
-    return null;
+  smallAngular.directive('ng-init', function(rootScope, el) {
+    const data = el.getAttribute('ng-init');
+    rootScope.eval(data);
   });
 
   window.smallAngular = smallAngular;
