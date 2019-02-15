@@ -30,15 +30,18 @@
       const baseNode = node || document.querySelector('[ng-app]');
       const childNodes = baseNode.querySelectorAll('*');
       this.compile(baseNode);
-      childNodes.forEach(elem => this.compile(elem));
+      childNodes.forEach(this.compile);
     }
   };
-  smallAngular.directive('ng-app', function(el) {
-    return null;
+  smallAngular.directive('ng-show', function(rootScope, el) {
+    const data = el.getAttribute('ng-show');
+
+    el.style.display = rootScope.eval(data) ? 'block' : 'none';
+    rootScope.$watch(data, () => {
+      el.style.display = rootScope.eval(data) ? 'block' : 'none';
+    });
   });
-  smallAngular.directive('ng-show', function(el) {
-    return null;
-  });
+
   smallAngular.directive('ng-model', function(el) {
     return null;
   });
