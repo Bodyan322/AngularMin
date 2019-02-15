@@ -18,8 +18,10 @@
     compile(node) {
       directives.forEach(elem => {
         for (let i = 0; i < node.attributes.length; i++) {
-          if (node.attributes[i].name === elem.name) {
-            elem.func(node, node.attributes[i].value);
+          const { name } = node.attributes[i];
+
+          if (name === elem.name) {
+            elem.func(rootScope, node, null);
           }
         }
       });
