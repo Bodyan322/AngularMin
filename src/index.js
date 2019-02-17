@@ -79,13 +79,20 @@
   });
   smallAngular.directive('ng-make-short', function(rootScope, el) {
     const strLen = el.getAttribute('length') || 4;
-    console.log(strLen);
-
     el.innerHTML = `${el.innerHTML.slice(0, strLen)}...`;
     rootScope.$watch(() => ({}), () => {
       el.innerText = `${el.innerText.slice(0, strLen)}...`;
     });
     rootScope.$apply();
+  });
+  smallAngular.directive('ng-random-color', function(scopeRoot, el) {
+    const colored = () => Math.floor(Math.random() * 255);
+
+    el.addEventListener('click', function() {
+      const backgroundColor = `rgb(${colored()}, ${colored()}, ${colored()})`;
+
+      el.style.background = backgroundColor;
+    });
   });
 
   window.smallAngular = smallAngular;
