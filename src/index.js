@@ -78,14 +78,14 @@
     });
   });
   smallAngular.directive('ng-make-short', function(rootScope, el) {
-    const strLen = el.getAttribute('length') || 4;
+    const strLen = el.getAttribute('length') || 5;
     el.innerHTML = `${el.innerHTML.slice(0, strLen)}...`;
     rootScope.$watch(() => ({}), () => {
       el.innerText = `${el.innerText.slice(0, strLen)}...`;
     });
     rootScope.$apply();
   });
-  smallAngular.directive('ng-random-color', function(scopeRoot, el) {
+  smallAngular.directive('ng-random-color', function(rootScope, el) {
     const colored = () => Math.floor(Math.random() * 255);
 
     el.addEventListener('click', function() {
@@ -93,6 +93,29 @@
 
       el.style.background = backgroundColor;
     });
+  });
+  smallAngular.directive('ng-repeat', function(rootScope, el) {
+    const data = el.getAttribute('ng-repeat');
+    const collectionName = data.split(' ')[2];
+    const parentEl = el.parentNode;
+
+    rootScope.$watch(collectionName, () => {
+      const collect = Array.from(rootScope[collectionName]);
+      const sameEl = Array.from(document.querySelectorAll(`[ng-repeat="${data}"]`));
+
+      collect.forEach(item => {
+        const clonedEl = el.cloneNode(false);
+
+        clonedEl.innerHTML = item;
+        parentEl.appendChild(clonedEl);
+      });
+
+      for (const el of sameEl) {
+        el.remove();
+      }
+    });
+
+    rootScope.$apply();
   });
 
   window.smallAngular = smallAngular;

@@ -16,7 +16,7 @@
   <p ng-make-short length='7'>rbrybtrbytyb</p>
   Ng-Bind:<span ng-bind="name"></span>
   <ul>
-    <li ng-make-long="some">One</li>
+    <li ng-repeat="letter in name"></li>
   </ul>
   <button ng-click="name='igor'">Click!</button>
 </body>
