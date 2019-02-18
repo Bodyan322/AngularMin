@@ -1,3 +1,4 @@
+/* eslint-disable no-eval*/
 (function() {
   const directives = [];
   const watchers = [];
@@ -56,7 +57,7 @@
       rootScope.$apply();
     });
     rootScope.$watch(data, () => {
-      el.value = rootScope.eval(data);
+      el.value = eval(data);
     });
   });
   smallAngular.directive('ng-bind', function(rootScope, el) {
@@ -79,7 +80,7 @@
   });
   smallAngular.directive('ng-make-short', function(rootScope, el) {
     const strLen = el.getAttribute('length') || 5;
-    el.innerHTML = `${el.innerHTML.slice(0, strLen)}...`;
+    el.innerText = `${el.innerText.slice(0, strLen)}...`;
     rootScope.$watch(() => ({}), () => {
       el.innerText = `${el.innerText.slice(0, strLen)}...`;
     });
