@@ -9,12 +9,18 @@
   <title>MySmallAngular</title>
 </head>
 
-<body ng-app ng-init="name='ivan'">
+<body ng-app ng-init="name='ivan'" ng-random-color>
   <div ng-show="true"> hi Ivan!!! </div>
+  <div ng-hide="false"> HELLO IT ME</div>
   <input ng-model="name"/>
-  <p ng-make-short>qqq qqq qqq qqq qqq qqq qqq</p>
-  <p ng-bind="name"></p>
-  <script src="src/index.js"></script>
+  <input ng-model="name"/>
+  <p ng-make-short length='7'>rbrybtrbytyb</p>
+  Ng-Bind:<span ng-bind="name"></span>
+  <ul>
+    <li ng-repeat="letter in name"></li>
+  </ul>
+  <button ng-click="name='igor'">Click!</button>
 </body>
+<script src="src/index.js"></script>
 
 </html>
