@@ -50,14 +50,14 @@
     });
   });
   smallAngular.directive('ng-model', function(rootScope, el) {
+    const data = el.getAttribute('ng-model');
     el.addEventListener('input', function() {
-      const data = el.getAttribute('ng-model');
       rootScope[data] = el.value;
       rootScope.$apply();
     });
-  });
-  smallAngular.directive('ng-make-short', function(el) {
-    return null;
+    rootScope.$watch(data, () => {
+      el.value = rootScope.eval(data);
+    });
   });
   smallAngular.directive('ng-bind', function(rootScope, el) {
     const data = el.getAttribute('ng-bind');
