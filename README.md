@@ -1,6 +1,7 @@
 <h1 align='center'>Implementation of Angular</h1>
-1.Install npm modules -> `npm i`;
-2. Open your page in browser -> `npm start`.
+
+  1. Install npm modules -> `npm i`;
+  2. Open your page in browser -> `npm start`.
 
 ## Describe
 In "index.js" you can find object smallAngular implementation and its methods:
