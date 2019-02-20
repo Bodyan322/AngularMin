@@ -96,12 +96,11 @@
   });
   smallAngular.directive('ng-repeat', function(rootScope, el) {
     const data = el.getAttribute('ng-repeat');
-    const collectionName = data.split(' ')[2];
+    const [, , collectionName] = data.split(' ');
     const parentEl = el.parentNode;
-
-    rootScope.$watch(collectionName, () => {
+    const repeatFunc = () => {
       const collect = Array.from(rootScope[collectionName]);
-      const sameEl = Array.from(document.querySelectorAll(`[ng-repeat="${data}"]`));
+      const sameEl = document.querySelectorAll(`[ng-repeat="${data}"]`);
 
       collect.forEach(item => {
         const clonedEl = el.cloneNode(false);
@@ -113,9 +112,11 @@
       for (const el of sameEl) {
         el.remove();
       }
+    };
+    repeatFunc();
+    rootScope.$watch(collectionName, () => {
+      repeatFunc();
     });
-
-    rootScope.$apply();
   });
 
   window.smallAngular = smallAngular;
