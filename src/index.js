@@ -74,7 +74,7 @@
   smallAngular.directive('ng-click', function(rootScope, el) {
     el.addEventListener('click', function() {
       const data = el.getAttribute('ng-click');
-      rootScope.eval(data);
+      eval(data);
       rootScope.$apply();
     });
   });
