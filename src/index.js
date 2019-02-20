@@ -37,9 +37,9 @@
   smallAngular.directive('ng-show', function(rootScope, el) {
     const data = el.getAttribute('ng-show');
 
-    el.style.display = rootScope.eval(data) ? 'block' : 'none';
-    rootScope.$watch(data, () => {
-      el.style.display = rootScope.eval(data) ? 'block' : 'none';
+    el.style.display = eval(data) ? 'block' : 'none';
+    rootScope.$watch(() => eval(el.getAttribute('ng-show')), () => {
+      el.style.display = eval(data) ? 'block' : 'none';
     });
   });
   smallAngular.directive('ng-hide', function(rootScope, el) {
