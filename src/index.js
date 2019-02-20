@@ -99,15 +99,15 @@
     const [, , collectionName] = data.split(' ');
     const parentEl = el.parentNode;
     const repeatFunc = () => {
-      const collect = Array.from(rootScope[collectionName]);
+      const collect = eval(collectionName);
       const sameEl = document.querySelectorAll(`[ng-repeat="${data}"]`);
 
-      collect.forEach(item => {
+      for (const item of collect) {
         const clonedEl = el.cloneNode(false);
 
         clonedEl.innerHTML = item;
         parentEl.appendChild(clonedEl);
-      });
+      }
 
       for (const el of sameEl) {
         el.remove();
