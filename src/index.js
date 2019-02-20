@@ -69,7 +69,7 @@
   });
   smallAngular.directive('ng-init', function(rootScope, el) {
     const data = el.getAttribute('ng-init');
-    rootScope.eval(data);
+    eval(data);
   });
   smallAngular.directive('ng-click', function(rootScope, el) {
     el.addEventListener('click', function() {
