@@ -81,10 +81,9 @@
   smallAngular.directive('ng-make-short', function(rootScope, el) {
     const strLen = el.getAttribute('length') || 5;
     el.innerText = `${el.innerText.slice(0, strLen)}...`;
-    rootScope.$watch(() => ({}), () => {
+    rootScope.$watch(() => el.getAttribute('length'), () => {
       el.innerText = `${el.innerText.slice(0, strLen)}...`;
     });
-    rootScope.$apply();
   });
   smallAngular.directive('ng-random-color', function(rootScope, el) {
     const colored = () => Math.floor(Math.random() * 255);
