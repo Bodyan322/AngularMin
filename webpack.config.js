@@ -1,26 +1,36 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  mode: 'development',
-  entry: {
-    app: './src/index.js',
-  },
-  devtool: 'inline-source-map',
-   devServer: {
-     contentBase: './dist'
-   },
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new UglifyJsPlugin({sourceMap: true}),
-    new HtmlWebpackPlugin({
-      title: 'Development'
-    })
-  ],
+  entry: './src/index.js',
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  }
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index.js',
+    libraryTarget: 'var',
+    library: 'EntryPoint'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src/index.html')
+    }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
